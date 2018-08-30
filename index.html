@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./clear.css">
+  <link rel="stylesheet" href="./wl-address.css">
+</head>
+
+<body>
+  <button onclick="addrShow()">召唤选择地址</button>
+  <button onclick="getAddr()">读取选好的地址</button>
+  <script src="https://cdn.bootcss.com/jquery/1.12.1/jquery.min.js"></script>
+  <script src="./wl-address.js"></script>
+  <script>
+    // weilan三级地址联动插件 必须引入wl-address.js和./wl-address.css
+    // 先实例化 并传入地址请求api
+    var wl = new WlAddress();
+    wl.init({
+      action: 'https://api.baihuazhongchuang.com/App/BhUser/area'
+    });
+
+    // 弹出地址选择
+    function addrShow() {
+      // 淡出地址请调用wl.show() 函数 当编辑时传入当前地址 如下注释部分 ，新增时无需传参
+      wl.show({
+        /* addr: {
+          province: '河南省',
+          provinceId: 410000,
+          city: '郑州市',
+          cityId: 410100,
+          content: '金水区',
+          contentId: 410105,
+        } */
+      });
+    }
+
+    // 获取选择后的地址数据
+    function getAddr() {
+      // 当地址选择完三级后会自动消失 请调用wl.getData()函数拿到你选择的地址数据
+      var data = wl.getData();
+      console.log(data)
+    }
+  </script>
+</body>
+
+</html>
