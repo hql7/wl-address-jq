@@ -6,13 +6,16 @@
     
     
     
-        // weilan三级地址联动插件 必须引入wl-address.js和./wl-address.css
+    // weilan三级地址联动插件 必须引入wl-address.js和./wl-address.css
     // 先实例化 并传入省市县地址请求api 目前默认传参数为pid 获取全部省份传空
     var wl = new WlAddress();
-    
-        wl.init({
-            action: 'https://api.bai*****gchuang.com/App/****/area'
-        });
+    wl.init({
+      action: 'https://api.baihuazhongchuang.com/App/BhUser/area'
+    }, function() {
+      // 这里做地址选择完毕 自动消失后 你的逻辑
+      var data = wl.getData();
+      console.log('地址选择完毕：', data)
+    });
     // 弹出地址选择
     function addrShow() {
       // 淡出地址请调用wl.show() 函数 当编辑时传入当前地址 如下注释部分 ，新增时无需传参
