@@ -3,7 +3,7 @@ function WlAddress() {
   var that = this;
   this.info = {};
   // 创建
-  this.init = function(data) {
+  this.init = function(data, fn) {
     data = data || {};
     // 接收请求地址
     if (!data.action) {
@@ -11,6 +11,7 @@ function WlAddress() {
       return;
     }
     this.info.action = data.action;
+    this.info.fn = fn;
 
     // 创建标签
     var html = "";
@@ -95,6 +96,7 @@ function WlAddress() {
     // 第三级选择完毕 关闭
     $("#wl-address-box").animate({ top: "100%" }, 500);
     $("#wl-mask").hide();
+    this.info.fn && this.info.fn();
   };
 
   // 读取所选地址数据

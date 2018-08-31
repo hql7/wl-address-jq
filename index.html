@@ -21,6 +21,10 @@
     var wl = new WlAddress();
     wl.init({
       action: 'https://api.baihuazhongchuang.com/App/BhUser/area'
+    }, function() {
+      // 这里做地址选择完毕 自动消失后 你的逻辑
+      var data = wl.getData();
+      console.log('地址选择完毕：', data)
     });
 
     // 弹出地址选择
