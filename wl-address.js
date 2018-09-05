@@ -84,6 +84,9 @@ function WlAddress() {
         .removeClass("active-item-title");
     } else {
       getAddress(JSON.stringify({ pid: "" }));
+      $(".wl-address-item")
+        .text("请选择")
+        .removeAttr("data-id");
       $(".wl-address-province")
         .addClass("active-item-title")
         .siblings(".wl-address-item")

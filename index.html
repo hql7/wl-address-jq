@@ -11,7 +11,8 @@
 </head>
 
 <body>
-  <button onclick="addrShow()">召唤选择地址</button>
+  <button onclick="addrShow('create')">召唤新建地址</button>
+  <button onclick="addrShow('edit')">召唤编辑地址</button>
   <button onclick="getAddr()">读取选好的地址</button>
   <script src="https://cdn.bootcss.com/jquery/1.12.1/jquery.min.js"></script>
   <script src="./wl-address.js"></script>
@@ -21,24 +22,29 @@
     var wl = new WlAddress();
     wl.init({
       action: 'https://api.baihuazhongchuang.com/App/BhUser/area'
-    }, function() {
+    }, function () {
       // 这里做地址选择完毕 自动消失后 你的逻辑
+      alert('我要消失了')
       var data = wl.getData();
       console.log('地址选择完毕：', data)
     });
 
     // 弹出地址选择
-    function addrShow() {
+    function addrShow(type) {
+      if (type == 'create') {
+        wl.show();
+        return;
+      }
       // 淡出地址请调用wl.show() 函数 当编辑时传入当前地址 如下注释部分 ，新增时无需传参
       wl.show({
-        /* addr: {
+        addr: {
           province: '河南省',
           provinceId: 410000,
           city: '郑州市',
           cityId: 410100,
           content: '金水区',
           contentId: 410105,
-        } */
+        }
       });
     }
 
